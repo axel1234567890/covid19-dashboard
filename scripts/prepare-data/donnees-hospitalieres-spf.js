@@ -8,8 +8,9 @@ const {fetchCsv} = require('./util')
 const departementsIndex = keyBy(departements, 'code')
 const regionsIndex = keyBy(regions, 'code')
 
-const covidHospitUrl = 'https://10.0.2.15/covid19-dashboard/scripts/prepare-data/donnees-hospitalieres.csv'
-const covidHospitNouveauxUrl = 'https://10.0.2.15/covid19-dashboard/scripts/prepare-data/donnees-hospitalieres-nouveaux.csv'
+const covidHospitUrl = 'https://10.0.2.4/covid19-dashboard/scripts/prepare-data/donnees-hospitalieres.csv'
+const covidHospitNouveauxUrl = 'https://10.0.2.4/covid19-dashboard/scripts/prepare-data/donnees-hospitalieres-nouveaux.csv'
+
 
 async function getCovidHospit() {
   const csvContent = await got(covidHospitUrl, {responseType: 'text', resolveBodyOnly: true})
@@ -46,7 +47,7 @@ function parseInteger(number) {
 }
 
 async function buildHospiSpfFrance() {
-  const rows = await fetchCsv('https://10.0.2.15/covid19-dashboard/scripts/prepare-data/table-indicateurs.csv')
+  const rows = await fetchCsv('https://10.0.2.4/covid19-dashboard/scripts/prepare-data/table-indicateurs.csv')
   return rows
     .map(row => ({
       code: 'FRA',
